@@ -1,1 +1,184 @@
 # JavaScriptSampleButtons
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All JavaScript Button Samples</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; line-height: 1.6; }
+        .sample { border: 1px solid #ccc; padding: 15px; margin-bottom: 20px; border-radius: 8px; background: #f9f9f9; }
+        .output { margin-top: 8px; font-weight: bold; color: rgb(20, 20, 20); min-height: 20px; }
+        .note { font-size: 0.85em; color: #666; font-style: italic; background: #eee; padding: 5px; }
+        button { padding: 8px 15px; cursor: pointer; background-color: rgb(57, 88, 175); color: white; border: none; border-radius: 4px; }
+        button:hover { background-color: pink; }
+        input { padding: 5px; margin-bottom: 3px; border: 1px solid #ccc; border-radius: 4px; }
+        hr { margin: 40px 0; border: 0; border-top: 2px solid #333; }
+    </style>
+</head>
+<body>
+
+    <h1>JavaScript Button Samples</h1>
+
+    <!-- SAMPLE 1: Basic Alert Button -->
+    <div class="sample">
+        <h2>Sample 1: Alert Button (Inline JavaScript)</h2>
+        <button onclick="alert('Hello!')">Click Me for Alert</button>
+        <p class="note">From lecture: &lt;button onclick="alert('Hello!')"&gt;</p>
+    </div>
+
+    <!-- SAMPLE 2: Function Declaration -->
+    <div class="sample">
+        <h2>Sample 2: Function Button</h2>
+        <button onclick="sayHello()">Click Me for Function</button>
+        <div class="output" id="output2"></div>
+        <p class="note">From lecture: function greet(name) { return "Hello, " + name + "!"; }</p>
+    </div>
+
+    <!-- SAMPLE 3: Change Text -->
+    <div class="sample">
+        <h2>Sample 3: Change Text Button</h2>
+        <p id="demo3">This text will change.</p>
+        <button onclick="changeText()">Click to Change Text</button>
+        <p class="note">Using document.getElementById().innerHTML</p>
+    </div>
+
+    <!-- SAMPLE 4: Counter -->
+    <div class="sample">
+        <h2>Sample 4: Counter Button (let and increment)</h2>
+        <p>You clicked: <span id="countDisplay">0</span> times</p>
+        <button onclick="incrementCounter()">Click to Count</button>
+        <p class="note">From lecture: let counter = 0; counter++;</p>
+    </div>
+
+    <!-- SAMPLE 5: Input Field Greeting -->
+    <div class="sample">
+        <h2>Sample 5: Input Field</h2>
+        <input type="text" id="nameInput" placeholder="Enter your name">
+        <button onclick="greetUser()">Greet Me</button>
+        <div class="output" id="greeting"></div>
+        <p class="note">From lecture: let message = "Hello, " + name + "!";</p>
+    </div>
+
+    <hr>
+
+    <!-- SAMPLE 6: If Statement -->
+    <div class="sample">
+        <h2>Sample 6: If Statement Button</h2>
+        <input type="number" id="ageInput" placeholder="Enter your age">
+        <button onclick="checkAge()">Check Age</button>
+        <div class="output" id="ageResult"></div>
+        <p class="note">From lecture: if (age >= 18) { adult } else { minor }</p>
+    </div>
+
+    <!-- SAMPLE 7: Multiple Parameters (Calculator) -->
+    <div class="sample">
+        <h2>Sample 7: Multiple Parameters (Add Numbers)</h2>
+        <input type="number" id="num1" placeholder="First number">
+        <input type="number" id="num2" placeholder="Second number">
+        <br>
+        <button onclick="addNumbers()">Add (+)</button>
+        <button onclick="sub()">Subtract (-)</button>
+        <button onclick="mul()">Multiply (*)</button>
+        <div class="output" id="sumResult">Result: 0</div>
+        <p class="note">From lecture: function add(a, b) { return a + b; }</p>
+    </div>
+
+    <!-- SAMPLE 8: Toggle Button (Boolean) -->
+    <div class="sample">
+        <h2>Sample 8: Toggle Button (Boolean)</h2>
+        <button onclick="toggleStatus()">Toggle Light</button>
+        <div class="output" id="statusBox">Light is ON</div>
+        <p class="note">Logic: Using a boolean variable (true/false) to switch states.</p>
+    </div>
+
+    <!-- JAVASCRIPT SECTION -->
+    <script>
+// Sample 2
+  function sayHello() {
+    let message = "Hello boi from the function!";
+      alert(message);
+      document.getElementById("output2").innerHTML = message;
+     console.log("Sample 2: Button was clicked!");
+        }
+
+// Sample 3
+    function changeText() {
+     let time = new Date().toLocaleTimeString();
+    document.getElementById("demo3").innerHTML = "Text changed boi! Button was clicked at " + time;
+        }
+
+// Sample 4
+   let count = 0;
+    function incrementCounter() {
+     count++;
+     document.getElementById("countDisplay").innerHTML = count;
+     console.log("Sample 4: Count = " + count);
+        }
+// Sample 5 
+    function greetUser() { 
+    let name = document.getElementById("nameInput").value; 
+    if (name === "") { 
+        name = "Guest"; 
+    } 
+    let message = "Hello boi, " + name + "!"; 
+    document.getElementById("greeting").innerHTML = message; 
+    console.log("Sample 5: " + message); 
+} 
+
+// Sample 6 
+function checkAge() { 
+    let ageInput = document.getElementById("ageInput").value; 
+    let resultDiv = document.getElementById("ageResult"); 
+    if (ageInput === "") { 
+        resultDiv.innerHTML = "Please enter an age."; 
+        return; 
+    } 
+    let age = Number(ageInput); 
+    if (age >= 18) { 
+        resultDiv.innerHTML = "Status: You're an Adult!"; 
+    } else { 
+        resultDiv.innerHTML = "Status: You're a Minor!"; 
+    } 
+} 
+
+// Sample 7 
+function addNumbers() { 
+    let n1 = Number(document.getElementById("num1").value); 
+    let n2 = Number(document.getElementById("num2").value); 
+    let res = calculateSum(n1, n2); 
+    document.getElementById("sumResult").innerHTML = "Result: " + n1 + " + " + n2 + " = " + res; 
+} 
+
+function calculateSum(a, b) { 
+    return a + b; 
+} 
+
+function sub() { 
+    let n1 = Number(document.getElementById("num1").value); 
+    let n2 = Number(document.getElementById("num2").value); 
+    let res = n1 - n2; 
+    document.getElementById("sumResult").innerHTML = "Result: " + n1 + " - " + n2 + " = " + res; 
+} 
+
+function mul() { 
+    let n1 = Number(document.getElementById("num1").value); 
+    let n2 = Number(document.getElementById("num2").value); 
+    let res = n1 * n2; 
+    document.getElementById("sumResult").innerHTML = "Result: " + n1 + " * " + n2 + " = " + res; 
+} 
+
+// Sample 8 
+let isLightOn = true;  
+function toggleStatus() { 
+    isLightOn = !isLightOn;
+    let display = document.getElementById("statusBox"); 
+    if (isLightOn) { 
+        display.innerHTML = "Light is ON"; 
+        display.style.color = "Yellow"; 
+    } else { 
+        display.innerHTML = "Light is OFF"; 
+        display.style.color = "black"; 
+    } 
+}
+        </script>
+        </html>
